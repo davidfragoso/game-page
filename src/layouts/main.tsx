@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { CssBaseline } from "@mui/material";
-import Navbar from "./components/Navbar";
-import Drawer from "./components/Drawer";
 
 class Circle {
   radius: number;
@@ -70,17 +68,10 @@ const App = () => {
         window.setTimeout(callback, 1000 / 60);
       });
 
-    function setCanvasSize() {
-      if (mainCanvas) {
-        mainCanvas.width = window.innerWidth;
-        mainCanvas.height = window.innerHeight;
-      }
-    }
-
     function drawCircles() {
       for (let i = 0; i < 20; i++) {
-        const randomX = Math.round(-100 + Math.random() * window.innerWidth);
-        const randomY = Math.round(-100 + Math.random() * window.innerHeight);
+        const randomX = Math.round(-100 + Math.random() * 1920);
+        const randomY = Math.round(-100 + Math.random() * 1080);
         const speed = 0.1 + Math.random() * 1.5;
         const size = 1 + Math.random() * 100;
 
@@ -92,9 +83,9 @@ const App = () => {
     }
 
     function draw() {
-      if (!mainContext || !mainCanvas) return;
+      if (!mainContext) return;
 
-      mainContext.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+      mainContext.clearRect(0, 0, 1500, 1500);
 
       for (let i = 0; i < circles.length; i++) {
         const myCircle = circles[i];
@@ -104,14 +95,7 @@ const App = () => {
       requestAnimationFrame(draw);
     }
 
-    setCanvasSize();
     drawCircles();
-
-    window.addEventListener('resize', setCanvasSize);
-
-    return () => {
-      window.removeEventListener('resize', setCanvasSize);
-    };
   }, []);
 
   return (
@@ -119,18 +103,16 @@ const App = () => {
       <CssBaseline />
       <canvas
         id="myCanvas"
+        width="1920px"
+        height="1080px"
         style={{
           position: "fixed",
           top: 0,
           left: 0,
           zIndex: -1,
-          width: '100%',
-          height: '100%',
-          background: "linear-gradient(to bottom, #391770, #5C43A3)",
+          background: "linear-gradient(to bottom, #391770,#5C43A3)",
         }}
       />
-      <Navbar />
-      <Drawer />
     </>
   );
 };
