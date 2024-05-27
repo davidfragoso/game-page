@@ -1,23 +1,68 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const desktopImages = [
-  'https://www.nintendo.com/eu/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_MortalKombat11.jpg',
-  'https://xxboxnews.blob.core.windows.net/prod/sites/2/2021/06/HaloInfiniteMP_Hero_FINAL.jpg',
-  'https://cdn1.epicgames.com/offer/6b0541b5d9aa476cbf407643ab3b1d7d/EGS_TheCallistoProtocol_StrikingDistanceStudios_S1_2560x1440-b99bb2275f932ed9beedefff5ced3baa',
-  'https://static1.thegamerimages.com/wordpress/wp-content/uploads/2022/04/thumb-1920-679351.jpg'
+  {
+    src: 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2019/03/Mortal-Kombat-11.jpg?tf=3840x',
+    shadow: 'rgba(0, 0, 0, 0.5) 0px 10px 30px'
+  },
+  {
+    src: 'https://rocket-chainsaw.b-cdn.net/wp-content/uploads/2018/05/Red-Dead-Redemption-2-New-Logo.jpg',
+    shadow: 'rgba(0, 0, 0, 0.3) 0px 10px 30px'
+  },
+  {
+    src: 'https://cdn-uploads.gameblog.fr/img/story/390756_618ac192bc9dd.jpg',
+    shadow: 'rgba(255, 0, 0, 0.5) 0px 10px 30px'
+  },
+  {
+    src: 'https://promotecgames.com.br/wp-content/uploads/2023/09/imagem_2023-09-12_121445024-1024x576.png',
+    shadow: 'rgba(0, 255, 0, 0.5) 0px 10px 30px'
+  },
+  {
+    src: 'https://xxboxnews.blob.core.windows.net/prod/sites/2/2021/06/HaloInfiniteMP_Hero_FINAL.jpg',
+    shadow: 'rgba(0, 0, 255, 0.5) 0px 10px 30px'
+  },
+  {
+    src: 'https://cdn.mos.cms.futurecdn.net/u5AvrmSq4kyqHZbd9SDnVQ.jpg',
+    shadow: 'rgba(255, 255, 0, 0.5) 0px 10px 30px'
+  },
+  {
+    src: 'https://static1.thegamerimages.com/wordpress/wp-content/uploads/2022/04/thumb-1920-679351.jpg',
+    shadow: 'rgba(255, 0, 255, 0.5) 0px 10px 30px'
+  }
 ];
 
 const mobileImages = [
-  'https://image.api.playstation.com/vulcan/ap/rnd/202010/0822/GuWErMI21uTbfZ6ohfiF7Yt0.jpg',
-  'https://image.api.playstation.com/vulcan/ap/rnd/202206/0222/a8y4xUnw4oThZxHuEBZvDzpz.jpg',
-  'https://whiteaways.lk/wp-content/uploads/2020/10/DfW3l1EVQAIxIMv-min.jpg',
-  'https://m.media-amazon.com/images/I/81r6IF9GNNL._AC_UF1000,1000_QL80_.jpg'
+  {
+    src: 'https://image.api.playstation.com/vulcan/ap/rnd/202010/0822/GuWErMI21uTbfZ6ohfiF7Yt0.jpg',
+    shadow: 'rgba(0, 0, 0, 0.5) 0px 10px 30px'
+  },
+  {
+    src: 'https://i.redd.it/bueqtztxmnj81.png',
+    shadow: 'rgba(0, 0, 0, 0.3) 0px 10px 30px'
+  },
+  {
+    src: 'https://assets.vg247.com/current//2018/05/red_dead_redemption_2_cover_art_1.jpg',
+    shadow: 'rgba(255, 0, 0, 0.5) 0px 10px 30px'
+  },
+  {
+    src: 'https://image.api.playstation.com/vulcan/ap/rnd/202206/0222/a8y4xUnw4oThZxHuEBZvDzpz.jpg',
+    shadow: 'rgba(0, 255, 0, 0.5) 0px 10px 30px'
+  },
+  {
+    src: 'https://whiteaways.lk/wp-content/uploads/2020/10/DfW3l1EVQAIxIMv-min.jpg',
+    shadow: 'rgba(0, 0, 255, 0.5) 0px 10px 30px'
+  },
+  {
+    src: 'https://m.media-amazon.com/images/I/81r6IF9GNNL._AC_UF1000,1000_QL80_.jpg',
+    shadow: 'rgba(255, 255, 0, 0.5) 0px 10px 30px'
+  }
 ];
 
 const styles = `
 .carousel {
   position: relative;
-  max-width: 100%;
+  width: 100%;
+  height: 100vh;
   margin: 0;
   overflow: hidden;
 }
@@ -25,21 +70,17 @@ const styles = `
 .carousel-inner {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  height: 100%;
 }
 
 .carousel-item {
-  min-width: 100%;
-  transition: opacity 0.5s ease-in-out;
-  opacity: 0;
-}
-
-.carousel-item.active {
-  opacity: 1;
+  flex: 0 0 100%;
+  height: 100%;
 }
 
 .carousel img {
   width: 100%;
-  height: 90vh;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -66,7 +107,7 @@ const styles = `
 
 .carousel-dots {
   position: absolute;
-  bottom: 10px;
+  bottom: 50px;
   width: 100%;
   text-align: center;
 }
@@ -156,8 +197,9 @@ const MainBanner: React.FC = () => {
           <div
             className={`carousel-item ${index === activeIndex ? 'active' : ''}`}
             key={index}
+            style={{ boxShadow: image.shadow }}
           >
-            <img src={image} alt={`Slide ${index}`} />
+            <img src={image.src} alt={`Slide ${index}`} />
           </div>
         ))}
       </div>

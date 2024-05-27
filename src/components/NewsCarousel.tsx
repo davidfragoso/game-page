@@ -71,29 +71,38 @@ const Container = styled('div')(({ theme }) => ({
 
 const SliderContainer = styled('div')(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   width: '100%',
-  overflowY: 'auto',
+  overflowX: 'auto',
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    overflowY: 'auto',
+  },
+}));
+
+const SlideWrapper = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  transition: 'transform 0.5s ease',
+  willChange: 'transform',
+  gap: '10px',
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',
   },
 }));
 
-const SlideWrapper = styled('div')({
+const AnimatedContainer = styled('div')(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'column',
-  transition: 'transform 0.5s ease',
-  willChange: 'transform',
-  gap: '10px',
-});
-
-const AnimatedContainer = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
   gap: '10px',
   padding: '20px 0',
   animation: `${fadeIn} 0.5s ease-in-out`,
-});
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+  },
+}));
 
 const Title = styled('h2')({
   width: '100%',

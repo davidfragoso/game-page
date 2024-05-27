@@ -17,13 +17,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     <>
       <CssBaseline />
       <Navbar />
-      <main className="banner-content">
+      <div className="banner-content">
         <MainBanner />
-        <div className="main-content">
-          <div className="sub-categories">
+        </div>
+      <main className="main-content">
+
+
+        <div className="sub-categories">
             <SubCategories />
-          </div>
           <div className="categories-popular-games">
+            
             <Categories />
             <div className="popular-games-container">
               <PopularGamesList />
@@ -43,16 +46,22 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           background-color: #161616;
           font-family: 'Quicksand', sans-serif;
         }
-
         .main-content {
-          padding: 2rem;
+          padding: 2.8rem;
           display: flex;
           flex-direction: column;
           align-items: center;
         }
+        .banner-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 80vh;
+          }
         .sub-categories {
           width: 100%;
         }
+
         .categories-popular-games {
           display: flex;
           width: 100%;
