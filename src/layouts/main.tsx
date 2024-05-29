@@ -9,7 +9,6 @@ import NewsCarousel from "../components/NewsCarousel";
 import DiscountCardList from "../components/DiscountCard";
 import GamePassList from "../components/GamePassCard";
 import FreeDemoGames from "../components/FreeDemoGames";
-import Table from "../components/Table";
 import Footer from "../components/Footer";
 
 interface MainLayoutProps {
@@ -45,8 +44,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           </div>
         </div>
         {children}
-        <Table />
-
       </main>
       <Footer />
       <style>{`
