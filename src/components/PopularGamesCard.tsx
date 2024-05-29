@@ -22,7 +22,7 @@ const StyledCard = styled(Card)({
 
 const StyledCardMedia = styled(CardMedia)({
   height: '230px',
-  filter: 'brightness(0.7)',
+  filter: 'brightness(0.9)',
 });
 
 const Rating = styled(Typography)({

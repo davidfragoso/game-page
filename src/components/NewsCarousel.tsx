@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { styled, keyframes } from '@mui/system';
+import { useMediaQuery } from '@mui/material';
 import NewsCard from './NewsCard';
 import ViewAllButton from './ViewAllButton';
 
@@ -122,6 +123,7 @@ const ViewAllWrapper = styled('div')({
 
 const NewsCarousel: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
+  const isMedium = useMediaQuery('(min-width: 769px) and (max-width: 992px)');
 
   const handleViewAll = () => {
     setShowAll(true);
@@ -135,7 +137,7 @@ const NewsCarousel: React.FC = () => {
           <>
             <SliderContainer>
               <SlideWrapper>
-                {news.slice(0, 3).map((newsItem, index) => (
+                {news.slice(0, isMedium ? 2 : 3).map((newsItem, index) => (
                   <NewsCard
                     key={index}
                     image={newsItem.image}

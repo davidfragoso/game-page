@@ -23,8 +23,8 @@ const StyledCategoriesCard = styled('div')(({ theme }) => ({
   padding: '1rem',
   margin: '0.5rem',
   width: '200px',
-  [theme.breakpoints.down('sm')]: {
-    visibility: 'hidden', // Ocultar en pantallas móviles manteniendo el espacio
+  [theme.breakpoints.down('md')]: {
+    visibility: 'hidden',
     height: 0,
   },
 }));
@@ -68,11 +68,11 @@ const CategoriesWrapper = styled('div')(({ theme }) => ({
 }));
 
 const Categories: React.FC = () => {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobileOrMedium = useMediaQuery('(max-width: 992px)');
 
   return (
     <CategoriesWrapper>
-      {isMobile ? (
+      {isMobileOrMedium ? (
         <StyledAccordion>
           <StyledAccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="categories-content" id="categories-header">
             <Typography>Categorías</Typography>

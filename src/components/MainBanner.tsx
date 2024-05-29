@@ -1,68 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Palette } from 'color-thief-react';
 
 const desktopImages = [
-  {
-    src: 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2019/03/Mortal-Kombat-11.jpg?tf=3840x',
-    shadow: 'rgba(0, 0, 0, 0.5) 0px 10px 30px'
-  },
-  {
-    src: 'https://rocket-chainsaw.b-cdn.net/wp-content/uploads/2018/05/Red-Dead-Redemption-2-New-Logo.jpg',
-    shadow: 'rgba(0, 0, 0, 0.3) 0px 10px 30px'
-  },
-  {
-    src: 'https://cdn-uploads.gameblog.fr/img/story/390756_618ac192bc9dd.jpg',
-    shadow: 'rgba(255, 0, 0, 0.5) 0px 10px 30px'
-  },
-  {
-    src: 'https://promotecgames.com.br/wp-content/uploads/2023/09/imagem_2023-09-12_121445024-1024x576.png',
-    shadow: 'rgba(0, 255, 0, 0.5) 0px 10px 30px'
-  },
-  {
-    src: 'https://xxboxnews.blob.core.windows.net/prod/sites/2/2021/06/HaloInfiniteMP_Hero_FINAL.jpg',
-    shadow: 'rgba(0, 0, 255, 0.5) 0px 10px 30px'
-  },
-  {
-    src: 'https://cdn.mos.cms.futurecdn.net/u5AvrmSq4kyqHZbd9SDnVQ.jpg',
-    shadow: 'rgba(255, 255, 0, 0.5) 0px 10px 30px'
-  },
-  {
-    src: 'https://static1.thegamerimages.com/wordpress/wp-content/uploads/2022/04/thumb-1920-679351.jpg',
-    shadow: 'rgba(255, 0, 255, 0.5) 0px 10px 30px'
-  }
+  'https://fanatical.imgix.net/product/original/68310a3e-4b93-45dc-b195-643a7ff53d51.jpeg?auto=compress,format&w=870&fit=crop&h=489',
+  'https://ichef.bbci.co.uk/news/976/cpsprodpb/2E40/production/_96204811_rdr2_preordernow_649x352a-newbanner-5.23.jpg',
+  'https://cdn-uploads.gameblog.fr/img/story/390756_618ac192bc9dd.jpg',
+  'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/11/senua-s-saga-hellblade-2-s-2024-release-window-has-been-a-long-time-coming.jpg',
+  'https://cdn.mos.cms.futurecdn.net/u5AvrmSq4kyqHZbd9SDnVQ.jpg',
 ];
 
 const mobileImages = [
-  {
-    src: 'https://image.api.playstation.com/vulcan/ap/rnd/202010/0822/GuWErMI21uTbfZ6ohfiF7Yt0.jpg',
-    shadow: 'rgba(0, 0, 0, 0.5) 0px 10px 30px'
-  },
-  {
-    src: 'https://i.redd.it/bueqtztxmnj81.png',
-    shadow: 'rgba(0, 0, 0, 0.3) 0px 10px 30px'
-  },
-  {
-    src: 'https://assets.vg247.com/current//2018/05/red_dead_redemption_2_cover_art_1.jpg',
-    shadow: 'rgba(255, 0, 0, 0.5) 0px 10px 30px'
-  },
-  {
-    src: 'https://image.api.playstation.com/vulcan/ap/rnd/202206/0222/a8y4xUnw4oThZxHuEBZvDzpz.jpg',
-    shadow: 'rgba(0, 255, 0, 0.5) 0px 10px 30px'
-  },
-  {
-    src: 'https://whiteaways.lk/wp-content/uploads/2020/10/DfW3l1EVQAIxIMv-min.jpg',
-    shadow: 'rgba(0, 0, 255, 0.5) 0px 10px 30px'
-  },
-  {
-    src: 'https://m.media-amazon.com/images/I/81r6IF9GNNL._AC_UF1000,1000_QL80_.jpg',
-    shadow: 'rgba(255, 255, 0, 0.5) 0px 10px 30px'
-  }
+  'https://image.api.playstation.com/vulcan/ap/rnd/202010/0822/GuWErMI21uTbfZ6ohfiF7Yt0.jpg',
+  'https://i.redd.it/bueqtztxmnj81.png',
+  'https://image.api.playstation.com/vulcan/ap/rnd/202206/0222/a8y4xUnw4oThZxHuEBZvDzpz.jpg',
+  'https://whiteaways.lk/wp-content/uploads/2020/10/DfW3l1EVQAIxIMv-min.jpg',
+  'https://m.media-amazon.com/images/I/81r6IF9GNNL._AC_UF1000,1000_QL80_.jpg'
 ];
 
 const styles = `
 .carousel {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   margin: 0;
   overflow: hidden;
 }
@@ -125,6 +84,24 @@ const styles = `
 .carousel-dots .dot.active {
   background: rgba(255, 255, 255, 1);
 }
+
+@media (max-width: 992px) {
+  .carousel {
+    height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 60vh;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel {
+    height: 50vh;
+  }
+}
 `;
 
 const MainBanner: React.FC = () => {
@@ -186,40 +163,50 @@ const MainBanner: React.FC = () => {
   };
 
   return (
-    <div
-      className="carousel"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      <div className="carousel-inner" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
-        {images.map((image, index) => (
+    <Palette src={images[activeIndex]} colorCount={5} format="rgbString" crossOrigin="anonymous">
+      {({ data }) => (
+        <div
+          style={{
+            boxShadow: data && data.length > 0 ? `${data[0]} 0px 0px 70px` : 'rgba(0, 0, 0, 0.5) 0px 10px 30px',
+            transition: 'box-shadow 0.5s ease-in-out',
+          }}
+        >
           <div
-            className={`carousel-item ${index === activeIndex ? 'active' : ''}`}
-            key={index}
-            style={{ boxShadow: image.shadow }}
+            className="carousel"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            <img src={image.src} alt={`Slide ${index}`} />
+            <div className="carousel-inner" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+              {images.map((image, index) => (
+                <div
+                  className={`carousel-item ${index === activeIndex ? 'active' : ''}`}
+                  key={index}
+                >
+                  <img src={image} alt={`Slide ${index}`} />
+                </div>
+              ))}
+            </div>
+            <button className="carousel-control prev" onClick={handlePrev}>
+              &#10094;
+            </button>
+            <button className="carousel-control next" onClick={handleNext}>
+              &#10095;
+            </button>
+            <div className="carousel-dots">
+              {images.map((_, index) => (
+                <span
+                  key={index}
+                  className={`dot ${index === activeIndex ? 'active' : ''}`}
+                  onClick={() => setActiveIndex(index)}
+                ></span>
+              ))}
+            </div>
           </div>
-        ))}
-      </div>
-      <button className="carousel-control prev" onClick={handlePrev}>
-        &#10094;
-      </button>
-      <button className="carousel-control next" onClick={handleNext}>
-        &#10095;
-      </button>
-      <div className="carousel-dots">
-        {images.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${index === activeIndex ? 'active' : ''}`}
-            onClick={() => setActiveIndex(index)}
-          ></span>
-        ))}
-      </div>
-      <style>{styles}</style>
-    </div>
+          <style>{styles}</style>
+        </div>
+      )}
+    </Palette>
   );
 };
 

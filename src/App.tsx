@@ -3,8 +3,7 @@ import MainLayout from './layouts/Main';
 
 const App = () => {
   return (
-    <MainLayout>
-    </MainLayout>
+    <MainLayout/>
   );
 };
 

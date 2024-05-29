@@ -82,9 +82,10 @@ const StyledContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   gap: '10px',
-  padding: '16px',
-  [theme.breakpoints.down('sm')]: {
-    justifyContent: 'center',
+  padding: '12px',
+  justifyContent: 'center',
+  [theme.breakpoints.up('md')]: {
+    justifyContent: 'flex-start',
   },
 }));
 
@@ -103,6 +104,7 @@ const Title = styled('h2')({
 const PopularGamesList: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMedium = useMediaQuery('(min-width: 769px) and (max-width: 992px)');
 
   const handleViewAll = () => {
     setShowAll(true);
@@ -138,3 +140,4 @@ const PopularGamesList: React.FC = () => {
 };
 
 export default PopularGamesList;
+  

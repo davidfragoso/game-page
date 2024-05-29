@@ -127,7 +127,7 @@ const styles = `
   width: 100%;
   z-index: 1000;
   padding: 0.5rem 1rem;
-  color: white; /* Ensure text is white */
+  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -139,7 +139,7 @@ const styles = `
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2px); /* Adjust the blur value as needed */
   z-index: -1;
 }
@@ -254,6 +254,9 @@ const styles = `
     display: flex;
     align-items: center;
   }
+  .LinksContainer {
+    display: none;
+  } 
 }
 
 @media (max-width: 480px) {
