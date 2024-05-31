@@ -2,7 +2,7 @@
   "name": "game-page",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://davidfragoso.github.io/game-page",
+  "homepage": "http://localhost:3000/game-page/",
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
